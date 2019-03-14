@@ -238,14 +238,14 @@ def load_vocab_size(embedding_size):
 def data_word2vec(input_file, num_labels, word2vec_model):
     """
     Create the research data tokenindex based on the word2vec model file.
-    Return the class Data(includes the data tokenindex and data labels).
+    Return the class Data (includes the data tokenindex and data labels).
 
     Args:
         input_file: The research data
         num_labels: The number of classes
         word2vec_model: The word2vec model file
     Returns:
-        The class Data(includes the data tokenindex and data labels)
+        The class Data (includes the data tokenindex and data labels)
     Raises:
         IOError: If the input file is not the .json file
     """
