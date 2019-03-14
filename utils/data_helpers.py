@@ -230,6 +230,7 @@ def load_word2vec_matrix(embedding_size):
     if not os.path.isfile(word2vec_file):
         raise IOError("✘ The word2vec file doesn't exist. "
                       "Please use function <create_vocab_size(embedding_size)> to create it!")
+
     model = gensim.models.Word2Vec.load(word2vec_file)
     vocab_size = len(model.wv.vocab.items())
     vocab = dict([(k, v.index) for k, v in model.wv.vocab.items()])
