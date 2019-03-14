@@ -97,8 +97,7 @@ def train_fasttext():
     x_val, y_val = dh.pad_data(val_data, FLAGS.pad_seq_len)
 
     # Build vocabulary
-    VOCAB_SIZE = dh.load_vocab_size(FLAGS.embedding_dim)
-    pretrained_word2vec_matrix = dh.load_word2vec_matrix(VOCAB_SIZE, FLAGS.embedding_dim)
+    VOCAB_SIZE, pretrained_word2vec_matrix = dh.load_word2vec_matrix(FLAGS.embedding_dim)
 
     # Build a graph and fasttext object
     with tf.Graph().as_default():
