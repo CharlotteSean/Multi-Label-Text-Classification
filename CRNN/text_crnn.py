@@ -2,7 +2,6 @@
 __author__ = 'Randolph'
 
 import tensorflow as tf
-from tensorflow.contrib import rnn
 from tensorflow.contrib.layers import batch_norm
 
 
@@ -128,11 +127,11 @@ class TextCRNN(object):
 
         for index, pool_flat in enumerate(pool_flat_outputs):
             with tf.variable_scope("Bi-lstm-{0}".format(index)):
-                lstm_fw_cell = rnn.BasicLSTMCell(lstm_hidden_size)  # forward direction cell
-                lstm_bw_cell = rnn.BasicLSTMCell(lstm_hidden_size)  # backward direction cell
+                lstm_fw_cell = tf.nn.rnn_cell.LSTMCell(lstm_hidden_size)  # forward direction cell
+                lstm_bw_cell = tf.nn.rnn_cell.LSTMCell(lstm_hidden_size)  # backward direction cell
                 if self.dropout_keep_prob is not None:
-                    lstm_fw_cell = rnn.DropoutWrapper(lstm_fw_cell, output_keep_prob=self.dropout_keep_prob)
-                    lstm_bw_cell = rnn.DropoutWrapper(lstm_bw_cell, output_keep_prob=self.dropout_keep_prob)
+                    lstm_fw_cell = tf.nn.rnn_cell.DropoutWrapper(lstm_fw_cell, output_keep_prob=self.dropout_keep_prob)
+                    lstm_bw_cell = tf.nn.rnn_cell.DropoutWrapper(lstm_bw_cell, output_keep_prob=self.dropout_keep_prob)
 
                 # Creates a dynamic bidirectional recurrent neural network
                 # shape of `outputs`: tuple -> (outputs_fw, outputs_bw)

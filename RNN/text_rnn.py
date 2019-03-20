@@ -182,11 +182,11 @@ class TextRNN(object):
 
         # Bi-LSTM Layer
         with tf.name_scope("Bi-lstm"):
-            lstm_fw_cell = rnn.BasicLSTMCell(lstm_hidden_size)  # forward direction cell
-            lstm_bw_cell = rnn.BasicLSTMCell(lstm_hidden_size)  # backward direction cell
+            lstm_fw_cell = tf.nn.rnn_cell.LSTMCell(lstm_hidden_size)  # forward direction cell
+            lstm_bw_cell = tf.nn.rnn_cell.LSTMCell(lstm_hidden_size)  # backward direction cell
             if self.dropout_keep_prob is not None:
-                lstm_fw_cell = rnn.DropoutWrapper(lstm_fw_cell, output_keep_prob=self.dropout_keep_prob)
-                lstm_bw_cell = rnn.DropoutWrapper(lstm_bw_cell, output_keep_prob=self.dropout_keep_prob)
+                lstm_fw_cell = tf.nn.rnn_cell.DropoutWrapper(lstm_fw_cell, output_keep_prob=self.dropout_keep_prob)
+                lstm_bw_cell = tf.nn.rnn_cell.DropoutWrapper(lstm_bw_cell, output_keep_prob=self.dropout_keep_prob)
 
             # Creates a dynamic bidirectional recurrent neural network
             # shape of `outputs`: tuple -> (outputs_fw, outputs_bw)
